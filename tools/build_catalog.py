@@ -126,6 +126,64 @@ def variants_for(fam):
     return out
 
 
+
+# ---------------------------------------------------------------------------
+# Full Sprite Mastery reward track, Chapter 7 Season 4 (Override), patch v42.40.
+# 35 tiers, verified against the Fortnite Wiki "Sprites > Sprites Mastery
+# Rewards" page (pages 1-5) and cross-checked against IGN, Beebom, Game Rant,
+# theclick.gg and allthings.how. Tiers 1-28 are the four launch/expansion
+# pages; tiers 35-70 are the final v42.40 page.
+#
+# `type` drives the icon shown in the reward rail; `amount` is the quantity
+# where the game grants more than one; `image` points at bundled art where a
+# real sprite render exists (the five Quack Sprites).
+# ---------------------------------------------------------------------------
+MASTERY_REWARDS = [
+    {"id": "r01", "level": 1,  "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r02", "level": 2,  "type": "locator",    "amount": 3,     "reward": "3 Cheat Code Locators", "short": "3 Locators"},
+    {"id": "r03", "level": 3,  "type": "dust",       "amount": 5000,  "reward": "5 000 Sprite Dust", "short": "5 000 Dust"},
+    {"id": "r04", "level": 4,  "type": "taco",       "amount": 4,     "reward": "4 Spicy Tacos", "short": "4 Tacos"},
+    {"id": "r05", "level": 5,  "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r06", "level": 6,  "type": "dust",       "amount": 5000,  "reward": "5 000 Sprite Dust", "short": "5 000 Dust"},
+    {"id": "r07", "level": 7,  "type": "extractor",  "amount": 2,     "reward": "2 Portable Extractors", "short": "2 Extractors"},
+    {"id": "r08", "level": 8,  "type": "accelerator","amount": 3,     "reward": "3 Extraction Accelerators", "short": "3 Accelerators"},
+    {"id": "r09", "level": 9,  "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r10", "level": 10, "type": "locator",    "amount": 3,     "reward": "3 Cheat Code Locators", "short": "3 Locators"},
+    {"id": "r11", "level": 11, "type": "dust",       "amount": 5000,  "reward": "5 000 Sprite Dust", "short": "5 000 Dust"},
+    {"id": "r12", "level": 12, "type": "extractor",  "amount": 2,     "reward": "2 Portable Extractors", "short": "2 Extractors"},
+    {"id": "r13", "level": 13, "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r14", "level": 14, "type": "llama",      "amount": 2,     "reward": "2 Llama Supply Drops", "short": "2 Llamas"},
+    {"id": "r15", "level": 15, "type": "dust",       "amount": 5000,  "reward": "5 000 Sprite Dust", "short": "5 000 Dust"},
+    {"id": "r16", "level": 16, "type": "locator",    "amount": 2,     "reward": "2 Cheat Code Locators", "short": "2 Locators"},
+    {"id": "r17", "level": 17, "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r18", "level": 18, "type": "taco",       "amount": 5,     "reward": "5 Spicy Tacos", "short": "5 Tacos"},
+    {"id": "r19", "level": 19, "type": "accelerator","amount": 3,     "reward": "3 Extraction Accelerators", "short": "3 Accelerators"},
+    {"id": "r20", "level": 20, "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r21", "level": 21, "type": "lucky",      "amount": 1,     "reward": "1 Lucky Locator", "short": "Lucky Locator"},
+    {"id": "r22", "level": 22, "type": "accelerator","amount": 3,     "reward": "3 Extraction Accelerators", "short": "3 Accelerators"},
+    {"id": "r23", "level": 23, "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r24", "level": 24, "type": "extractor",  "amount": 2,     "reward": "2 Portable Extractors", "short": "2 Extractors"},
+    {"id": "r25", "level": 25, "type": "llama",      "amount": 2,     "reward": "2 Llama Supply Drops", "short": "2 Llamas"},
+    {"id": "r26", "level": 26, "type": "dust",       "amount": 5000,  "reward": "5 000 Sprite Dust", "short": "5 000 Dust"},
+    {"id": "r27", "level": 27, "type": "xp",         "amount": 40000, "reward": "40 000 XP de saison", "short": "40 000 XP"},
+    {"id": "r28", "level": 28, "type": "outfit",     "amount": 1,     "reward": "Pixel Polli (tenue)", "short": "Pixel Polli",
+     "featured": True, "note": "Tenue Epic, débloquée à 28 esprits maîtrisés."},
+    {"id": "r35", "level": 35, "type": "lucky",      "amount": 1,     "reward": "1 Lucky Locator", "short": "Lucky Locator"},
+    {"id": "r40", "level": 40, "type": "sprite",     "amount": 1,     "reward": "Quack Jonesy Sprite", "short": "Quack Jonesy",
+     "image": "assets/sprites/s4_jonesy_quack.webp", "featured": True},
+    {"id": "r45", "level": 45, "type": "sprite",     "amount": 1,     "reward": "Quack Bush Sprite", "short": "Quack Bush",
+     "image": "assets/sprites/s4_bush_quack.webp", "featured": True},
+    {"id": "r50", "level": 50, "type": "sprite",     "amount": 1,     "reward": "Quack Adventure Sprite", "short": "Quack Adventure",
+     "image": "assets/sprites/s4_adventure_quack.webp", "featured": True},
+    {"id": "r55", "level": 55, "type": "sprite",     "amount": 1,     "reward": "Quack Spooky Dash Sprite", "short": "Quack Spooky Dash",
+     "image": "assets/sprites/s4_spookydash_quack.webp", "featured": True},
+    {"id": "r60", "level": 60, "type": "sprite",     "amount": 1,     "reward": "Quack Klombo Sprite", "short": "Quack Klombo",
+     "image": "assets/sprites/s4_klombo_quack.webp", "featured": True},
+    {"id": "r70", "level": 70, "type": "style",      "amount": 1,     "reward": "Pixel Polli — style Mixtape Pixie", "short": "Style Mixtape Pixie",
+     "featured": True, "note": "Style supplémentaire de la tenue Pixel Polli (objectif final de la saison)."},
+]
+
+
 def build():
     spirits = []
     families_out = []
@@ -174,23 +232,34 @@ def build():
         "variants": VARIANTS,
         "families": families_out,
         "spirits": spirits,
-        "masteryRewards": [
-            {"level": 28, "reward": "Pixel Polli Outfit"},
-            {"level": 35, "reward": "Lucky Locator"},
-            {"level": 40, "reward": "Quack Jonesy Sprite"},
-            {"level": 45, "reward": "Quack Bush Sprite"},
-            {"level": 50, "reward": "Quack Adventure Sprite"},
-            {"level": 55, "reward": "Quack Spooky Dash Sprite"},
-            {"level": 60, "reward": "Quack Klombo Sprite"},
-            {"level": 70, "reward": "Pixel Polli — Mixtape Pixie style"},
+        "masteryRewards": MASTERY_REWARDS,
+        "masteryRewardPages": [
+            {"page": 1, "label": "Page 1", "from": 1, "to": 8},
+            {"page": 2, "label": "Page 2", "from": 9, "to": 14},
+            {"page": 3, "label": "Page 3", "from": 15, "to": 21},
+            {"page": 4, "label": "Page 4", "from": 22, "to": 28},
+            {"page": 5, "label": "Page 5 (v42.40)", "from": 35, "to": 70},
         ],
+        "rewardTrackSource": {
+            "patch": "v42.40",
+            "tiers": len(MASTERY_REWARDS),
+            "verifiedAgainst": [
+                "Fortnite Wiki — Sprites / Sprites Mastery Rewards (pages 1-5)",
+                "IGN — Sprites Checklist (Chapter 7 Season 4)",
+                "Beebom — What Does Mastering a Sprite Do in Fortnite?",
+                "Game Rant — All Sprite Mastery Rewards / Quack Sprites",
+                "theclick.gg — Chapter 7 Season 4 Sprite Mastery Rewards",
+                "allthings.how — Every Sprite Mastery Track Reward",
+            ],
+            "discrepancy": "Tier 16 (Cheat Code Locators) is listed as 3x by IGN and 2x by the Fortnite Wiki, Game Rant, Beebom and allthings.how; 2x is used here. Tiers 1-28 are one continuous track; 35-70 form the final v42.40 page.",
+        },
         "notes": [
-            "In-game the collectibles are called 'Sprites', not 'Spirits'.",
-            "Catalog verified 2026-10-26 against patch v42.40. Epic has locked the season roster at 162 entries.",
-            "Mastery = level a Sprite to 5 and then EXTRACT it. Reaching level 5 alone does not count.",
-            "Also-known-as: a few trackers still use pre-launch names — Jazz Jackrabbit (= Jackrabbit), Bushranger (= Bush), 8-Bit Blaster (= 8-Bit), The Adventurer (= Adventure), Victory Crown (= Crown). The in-game names are used here; the older names are searchable.",
-            "Excluded on purpose: previous-season (Chapter 7 Season 3) Sprites such as Dream, Zero Point, Grim Reaper, Ironmouse, Pollo, Duck, Ghost, Fire, Water, Earth, Fishy, and cancelled or never-released placeholders such as Bullet, Cube, Head Shot, Meowscles and Squibbly. None of them are obtainable in Season 4, so they do not belong in a Season 4 collection.",
-            "Extracting 30 Sprites (at any level) also unlocks the Pixel Sprite Trainer Back Bling — that is an extraction milestone, separate from the mastery track.",
+            "Dans le jeu, ces créatures s'appellent des « Sprites » ; le tracker accepte « esprit(s) » comme synonyme de recherche.",
+            "Catalogue vérifié le 26/10/2026 sur le patch v42.40. Epic a figé le roster de la saison à 162 entrées.",
+            "Une maîtrise = atteindre le niveau 5 PUIS extraire l'esprit. Le niveau 5 seul ne compte pas.",
+            "Extraire 30 esprits (à n'importe quel niveau) débloque aussi le Back Bling Pixel Sprite Trainer : c'est un palier d'extraction, distinct du track de maîtrise.",
+            "Certains trackers utilisent encore les noms d'avant-sortie : Jazz Jackrabbit (= Jackrabbit), Bushranger (= Bush), 8-Bit Blaster (= 8-Bit), The Adventurer (= Adventure), Victory Crown (= Crown). Les noms du jeu sont utilisés ici, les anciens restent cherchables.",
+            "Exclus volontairement : les esprits de la saison 3 (Dream, Zero Point, Grim Reaper, Ironmouse, Pollo, Duck, Ghost, Fire, Water, Earth, Fishy) et les placeholders jamais sortis (Bullet, Cube, Head Shot, Meowscles, Squibbly). Aucun n'est obtenable en saison 4.",
         ],
     }
     os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)

@@ -1,213 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Fortnite Spirits — Chapter 7 Season 4 Collection Tracker</title>
-<meta name="description" content="Personal collection tracker for all 162 Fortnite Chapter 7 Season 4 (Override) Sprites: ownership, mastery, and progress toward the 70-mastery reward.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0d12'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%2322d3ee'/%3E%3C/svg%3E">
+<title>Collection des Esprits — Fortnite Chapitre 7 Saison 4</title>
+<meta name="description" content="Suivi de collection pour les 162 esprits et variantes de Fortnite Chapitre 7 Saison 4 (Override) : possession, maîtrise niveau 5 et progression vers les récompenses de maîtrise.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23081a33'/%3E%3Cpath d='M16 5l2.9 6.2 6.6.8-4.9 4.5 1.4 6.5L16 19.7l-6 3.3 1.4-6.5L6.5 12l6.6-.8z' fill='%23ffd93d'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip-link" href="#collection">Skip to collection</a>
+<a class="skip-link" href="#collection">Aller à la collection</a>
 
+<!-- ============================ EN-TÊTE ============================ -->
 <header class="topbar">
-  <div class="brand">
-    <span class="logo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
-        <path d="M12 2.8 14.4 8l5.7.6-4.2 3.8 1.2 5.6L12 15.1 6.9 18l1.2-5.6L3.9 8.6 9.6 8z"/>
-        <circle cx="12" cy="21" r="1.1" fill="currentColor" stroke="none"/>
-      </svg>
-    </span>
-    <div class="brand-text">
-      <h1>Fortnite Spirits</h1>
-      <p>Chapter 7 · Season 4 — <span class="season">Override</span><span class="strapline-extra"> · <span id="catalogTotalLabel">162</span> sprites &amp; variants</span></p>
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="Collection des esprits — accueil">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" width="26" height="26" fill="none">
+          <path d="M14 3.2l3 6.6 7 .85-5.2 4.8 1.45 6.95L14 18.85 7.75 22.4 9.2 15.45 4 10.65l7-.85z"
+                fill="currentColor" opacity=".92"/>
+          <circle cx="14" cy="24.6" r="1.5" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-kicker">Fortnite · Chapitre 7 · Saison 4</span>
+        <span class="brand-title">Collection des Esprits</span>
+      </span>
+    </a>
+
+    <div class="topbar-actions">
+      <button type="button" class="btn btn-ghost" id="settingsBtn" aria-haspopup="dialog" aria-label="Réglages">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="M12 2.6v2.7M12 18.7v2.7M2.6 12h2.7M18.7 12h2.7M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"/></svg>
+        <span class="btn-label-long">Réglages</span>
+      </button>
+      <button type="button" class="btn" id="importBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="m7.7 10 4.3 4.2 4.3-4.2"/><path d="M4.4 16.4v1.8a2 2 0 0 0 2 2h11.2a2 2 0 0 0 2-2v-1.8"/></svg>
+        <span class="btn-label-long">Importer</span>
+      </button>
+      <button type="button" class="btn btn-cta" id="exportBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V9.6"/><path d="m7.7 14 4.3-4.2 4.3 4.2"/><path d="M4.4 16.4v1.8a2 2 0 0 0 2 2h11.2a2 2 0 0 0 2-2v-1.8"/></svg>
+        <span class="btn-label-long">Exporter</span>
+      </button>
     </div>
   </div>
-
-  <div class="header-actions">
-    <button type="button" class="btn btn-ghost" id="settingsBtn" aria-haspopup="dialog" aria-label="Settings">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg>
-      <span class="lbl-long">Settings</span>
-    </button>
-    <button type="button" class="btn" id="importBtn">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11"/><path d="m7.5 10 4.5 4.5 4.5-4.5"/><path d="M4 16.5v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-      <span class="lbl-long">Import Collection</span><span class="lbl-short">Import</span>
-    </button>
-    <button type="button" class="btn btn-primary" id="exportBtn">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5v-11"/><path d="m7.5 14 4.5-4.5 4.5 4.5"/><path d="M4 16.5v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-      <span class="lbl-long">Export Collection</span><span class="lbl-short">Export</span>
-    </button>
-    <input type="file" id="importFile" accept="application/json,.json" hidden>
-  </div>
+  <div class="topbar-edge" aria-hidden="true"></div>
 </header>
 
-<main>
-  <!-- ---------- Mastery progress ---------- -->
-  <section class="panel progress" aria-labelledby="progressHeading">
-    <h2 id="progressHeading" class="sr-only">Sprite mastery progress</h2>
-
-    <div class="progress-top">
-      <div class="progress-headline">
-        <p class="progress-count">
-          <strong id="masteredTotal">15</strong><span class="slash">/</span><span id="masteryTarget">70</span>
-          <span class="unit">mastered</span>
+<main id="top">
+  <!-- ====================== PROGRESSION / MAÎTRISE ====================== -->
+  <section class="mastery" aria-labelledby="masteryHeading">
+    <div class="mastery-head">
+      <div class="mastery-title-block">
+        <h2 id="masteryHeading" class="section-kicker">Maîtrise des esprits</h2>
+        <p class="mastery-count">
+          <strong id="masteredTotal">0</strong>
+          <span class="mastery-sep">/</span>
+          <span id="masteryTarget">70</span>
+          <span class="mastery-unit">maîtrisés</span>
         </p>
-        <p class="progress-remaining" id="remainingLabel">55 more to go</p>
+        <p class="mastery-sub" id="remainingLabel">70 esprits encore à maîtriser</p>
       </div>
 
-      <div class="badge" id="rewardStatus" data-state="locked">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
-        <span id="rewardStatusText">Reward locked</span>
+      <div class="mastery-meta">
+        <div class="reward-state" id="rewardStatus" data-state="locked">
+          <span class="reward-state-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4.6" y="10.4" width="14.8" height="10.2" rx="2.1"/><path d="M8.2 10.4V7.9a3.8 3.8 0 0 1 7.6 0v2.5"/></svg>
+          </span>
+          <span id="rewardStatusText">Récompense verrouillée</span>
+        </div>
+        <p class="mastery-percent"><span id="progressPercent">0</span><span class="pct">%</span></p>
       </div>
     </div>
 
-    <div class="bar" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="70" aria-valuenow="15" aria-labelledby="remainingLabel">
-      <div class="bar-fill" id="barFill" style="width:21.43%"></div>
-      <span class="bar-tick" style="left:40%" title="Quack Jonesy at 40 mastered"></span>
-      <span class="bar-tick" style="left:60%" title="Quack Klombo at 60 mastered"></span>
+    <!-- barre de progression -->
+    <div class="track" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="70" aria-valuenow="0"
+         aria-labelledby="remainingLabel">
+      <div class="track-fill" id="barFill" style="width:0%">
+        <span class="track-glow" aria-hidden="true"></span>
+      </div>
+      <span class="track-marker" data-threshold="28" style="left:40%" title="28 · Pixel Polli"></span>
+      <span class="track-marker" data-threshold="40" style="left:57.142%" title="40 · Quack Jonesy"></span>
+      <span class="track-marker" data-threshold="60" style="left:85.714%" title="60 · Quack Klombo"></span>
+      <span class="track-marker" data-threshold="70" style="left:100%" title="70 · Style Mixtape Pixie"></span>
     </div>
 
-    <div class="progress-foot">
-      <p class="milestones" id="milestoneLabel"></p>
-      <p class="starting">
-        <span id="startingText">Counter starts at 15 pre-tracked masteries</span>
-        <button type="button" class="link-btn" id="editStartingBtn">change</button>
+    <div class="mastery-foot">
+      <p class="next-reward" id="nextReward" aria-live="polite">
+        <span class="next-reward-label">Prochaine récompense</span>
+        <span class="next-reward-name" id="nextRewardName">—</span>
+        <span class="next-reward-meta" id="nextRewardMeta"></span>
       </p>
+      <p class="milestones" id="milestoneLabel"></p>
     </div>
 
-    <ul class="stats">
-      <li><span class="stat-value" id="statOwned">0</span><span class="stat-label">Owned</span></li>
-      <li><span class="stat-value" id="statMastered">0</span><span class="stat-label">Mastered here</span></li>
-      <li><span class="stat-value" id="statMissing">162</span><span class="stat-label">Missing</span></li>
-      <li><span class="stat-value" id="statCompletion">0%</span><span class="stat-label">Collection</span></li>
+    <!-- rail des 35 récompenses vérifiées -->
+    <div class="rewards">
+      <div class="rewards-head">
+        <h3 class="rewards-title">Paliers de récompenses <span class="rewards-count" id="rewardCount">35</span></h3>
+        <button type="button" class="link-btn rewards-jump" id="rewardsNewestBtn">Palier en cours →</button>
+      </div>
+      <div class="rewards-rail" id="rewardRail" tabindex="0" role="list"
+           aria-label="Paliers de récompenses de maîtrise, de 1 à 70 esprits maîtrisés"></div>
+    </div>
+
+    <!-- statistiques -->
+    <ul class="stats" aria-label="Statistiques de collection">
+      <li class="stat" data-tone="owned">
+        <span class="stat-label">Possédés</span>
+        <span class="stat-value" id="statOwned">0<span class="stat-total">/162</span></span>
+      </li>
+      <li class="stat" data-tone="mastered">
+        <span class="stat-label">Maîtrisés ici</span>
+        <span class="stat-value" id="statMastered">0</span>
+      </li>
+      <li class="stat" data-tone="missing">
+        <span class="stat-label">À obtenir</span>
+        <span class="stat-value" id="statMissing">162</span>
+      </li>
+      <li class="stat" data-tone="completion">
+        <span class="stat-label">Collection</span>
+        <span class="stat-value" id="statCompletion">0<span class="stat-total">%</span></span>
+      </li>
     </ul>
+    <p class="starting">
+      <span id="startingText"></span>
+      <button type="button" class="link-btn" id="editStartingBtn">ajuster</button>
+    </p>
   </section>
 
-  <!-- ---------- Controls ---------- -->
-  <section class="controls" aria-label="Search, filter and sort">
+  <!-- ========================= RECHERCHE / FILTRES ========================= -->
+  <section class="controls" aria-label="Recherche, filtres et tri">
     <div class="search-wrap">
-      <svg class="search-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
-      <input type="search" id="search" placeholder="Search sprites, families, finishes…" aria-label="Search sprites by name, family, variant or alias" autocomplete="off" spellcheck="false">
-      <button type="button" class="clear-search" id="clearSearch" aria-label="Clear search" hidden>
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      <svg class="search-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.6"/><path d="m16.2 16.2 4.2 4.2"/></svg>
+      <input type="search" id="search" placeholder="Rechercher un esprit, une famille, une variante…"
+             aria-label="Rechercher par nom, famille, variante ou alias" autocomplete="off" spellcheck="false">
+      <button type="button" class="clear-search" id="clearSearch" aria-label="Effacer la recherche" hidden>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
     </div>
 
-    <div class="filter-row">
-      <div class="filters" role="group" aria-label="Filter by collection status">
-        <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip" data-filter="owned" aria-pressed="false">Owned</button>
-        <button type="button" class="chip" data-filter="missing" aria-pressed="false">Missing</button>
-        <button type="button" class="chip" data-filter="mastered" aria-pressed="false">Mastered</button>
-        <button type="button" class="chip" data-filter="unmastered" aria-pressed="false">Not mastered</button>
-        <button type="button" class="chip" data-filter="owned-unmastered" aria-pressed="false">Owned, not mastered</button>
-      </div>
-
-      <div class="sort-wrap">
-        <label for="sort">Sort</label>
-        <select id="sort">
-          <option value="family">By family</option>
-          <option value="az">A → Z</option>
-          <option value="status">By status</option>
-        </select>
-      </div>
+    <div class="filter-tabs" role="group" aria-label="Filtrer par statut de collection">
+      <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">Tous</button>
+      <button type="button" class="chip" data-filter="owned" aria-pressed="false">Possédés</button>
+      <button type="button" class="chip" data-filter="missing" aria-pressed="false">Manquants</button>
+      <button type="button" class="chip" data-filter="mastered" aria-pressed="false">Maîtrisés</button>
+      <button type="button" class="chip" data-filter="unmastered" aria-pressed="false">Non maîtrisés</button>
+      <button type="button" class="chip" data-filter="owned-unmastered" aria-pressed="false">Possédés non maîtrisés</button>
     </div>
 
-    <p class="result-count" id="resultCount" role="status" aria-live="polite">162 sprites</p>
+    <div class="selects">
+      <div class="select-wrap">
+        <label for="familyFilter">Famille</label>
+        <select id="familyFilter">
+          <option value="all">Toutes</option>
+        </select>
+      </div>
+      <div class="select-wrap">
+        <label for="variantFilter">Variante</label>
+        <select id="variantFilter">
+          <option value="all">Toutes</option>
+        </select>
+      </div>
+      <div class="select-wrap">
+        <label for="sort">Tri</label>
+        <select id="sort">
+          <option value="family">Par famille</option>
+          <option value="az">A → Z</option>
+          <option value="status">Par statut</option>
+        </select>
+      </div>
+      <p class="result-count" id="resultCount" role="status" aria-live="polite">162 esprits</p>
+    </div>
   </section>
 
-  <!-- ---------- Collection ---------- -->
-  <section id="collection" aria-label="Sprite collection">
+  <!-- ============================ COLLECTION ============================ -->
+  <section id="collection" aria-label="Collection des esprits">
     <div id="grid" class="collection"></div>
     <div class="empty" id="emptyState" hidden>
-      <p class="empty-title">No sprites match this view.</p>
-      <p class="empty-body">Try a different search term, clear the filter, or switch to “All”.</p>
-      <button type="button" class="btn" id="resetViewBtn">Reset search &amp; filters</button>
+      <p class="empty-title">Aucun esprit ne correspond à cette vue.</p>
+      <p class="empty-body">Essaie un autre terme de recherche, change de filtre ou reviens à « Tous ».</p>
+      <button type="button" class="btn" id="resetViewBtn">Réinitialiser la vue</button>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <p>
-    <span id="footerCatalog">Catalog C7S4-2026-10-26</span> ·
-    <span id="footerVerified">verified 26 Oct 2026 (patch v42.40)</span> ·
+    <span id="footerCatalog">Catalogue C7S4-2026-10-26</span> ·
+    <span id="footerVerified">vérifié le 26/10/2026 (patch v42.40)</span> ·
+    sources :
     <a href="https://spritechecklist.org/" target="_blank" rel="noopener noreferrer">spritechecklist.org</a>,
     <a href="https://www.vice.com/en/article/all-fortnite-chapter-7-season-4-sprites-complete-list/" target="_blank" rel="noopener noreferrer">VICE</a>,
-    <a href="https://fortnite.weirdgloop.org/w/Chapter_7:_Season_4" target="_blank" rel="noopener noreferrer">Fortnite Wiki</a>
+    <a href="https://fortnite.weirdgloop.org/w/Sprites" target="_blank" rel="noopener noreferrer">Fortnite Wiki</a>
   </p>
-  <p class="footer-note">Saved in this browser only — no account, no server. Sprite art © Epic Games; images bundled locally for offline use.</p>
+  <p class="footer-note">Collection enregistrée uniquement dans ce navigateur — sans compte ni serveur. Visuels © Epic Games, inclus localement. Projet de fan non officiel.</p>
 </footer>
 
-<!-- ---------- Settings dialog ---------- -->
+<!-- ============================ RÉGLAGES ============================ -->
 <dialog id="settingsDialog" class="dialog" aria-labelledby="settingsTitle">
   <form method="dialog" class="dialog-inner">
     <header class="dialog-head">
-      <h2 id="settingsTitle">Settings &amp; catalog info</h2>
-      <button type="submit" class="icon-btn" aria-label="Close settings" value="close">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      <h2 id="settingsTitle">Réglages &amp; infos du catalogue</h2>
+      <button type="submit" class="icon-btn" aria-label="Fermer" value="close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
     </header>
 
     <section class="dialog-section">
-      <h3>Starting mastery count</h3>
-      <p class="hint">Sprites you had already mastered before you started using this tracker. They count toward the 70-mastery reward but aren't tied to specific entries. Default is <strong>15</strong>.</p>
+      <h3>Esprits déjà maîtrisés (hors tracker)</h3>
+      <p class="hint">Nombre d'esprits que tu avais déjà maîtrisés avant d'utiliser ce tracker. Ils comptent pour les récompenses mais ne sont liés à aucune fiche. Par défaut : <strong>0</strong>.</p>
       <div class="number-row">
-        <input type="number" id="startingInput" min="0" max="162" step="1" value="15" inputmode="numeric" aria-label="Starting mastery count">
-        <span class="hint">of 162 catalog entries · applies instantly</span>
+        <input type="number" id="startingInput" min="0" max="162" step="1" value="0" inputmode="numeric" aria-label="Esprits déjà maîtrisés">
+        <span class="hint">sur 162 fiches · appliqué immédiatement</span>
       </div>
     </section>
 
     <section class="dialog-section">
-      <h3>Collection data</h3>
+      <h3>Données de collection</h3>
       <p class="hint" id="dataSummary">—</p>
       <div class="dialog-actions">
-        <button type="button" class="btn" id="dialogExportBtn">Export Collection</button>
-        <button type="button" class="btn" id="dialogImportBtn">Import Collection</button>
-        <button type="button" class="btn btn-danger" id="resetBtn">Reset collection</button>
+        <button type="button" class="btn" id="dialogExportBtn">Exporter</button>
+        <button type="button" class="btn" id="dialogImportBtn">Importer</button>
+        <button type="button" class="btn btn-danger" id="resetBtn">Réinitialiser la collection</button>
       </div>
       <p class="hint" id="unknownEntries" hidden></p>
     </section>
 
     <section class="dialog-section">
-      <h3>Catalog</h3>
+      <h3>Catalogue &amp; récompenses</h3>
       <p class="hint" id="catalogSummary">—</p>
       <ul class="source-list" id="sourceList"></ul>
-      <p class="hint disclosure" id="disclosureText"></p>
+      <ul class="disclosure" id="disclosureText"></ul>
     </section>
   </form>
 </dialog>
 
-<!-- ---------- Import report dialog ---------- -->
+<!-- ============================ RAPPORT D'IMPORT ============================ -->
 <dialog id="reportDialog" class="dialog" aria-labelledby="reportTitle">
   <form method="dialog" class="dialog-inner">
     <header class="dialog-head">
-      <h2 id="reportTitle">Import result</h2>
-      <button type="submit" class="icon-btn" aria-label="Close" value="close">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      <h2 id="reportTitle">Résultat de l'import</h2>
+      <button type="submit" class="icon-btn" aria-label="Fermer" value="close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
     </header>
     <div id="reportBody" class="report-body"></div>
-    <div class="dialog-actions">
-      <button type="submit" class="btn btn-primary" value="close">Done</button>
+    <div class="dialog-actions dialog-actions-end">
+      <button type="submit" class="btn btn-cta" value="close">Terminé</button>
     </div>
   </form>
 </dialog>
 
-<!-- ---------- Confirm dialog ---------- -->
+<!-- ============================ CONFIRMATION ============================ -->
 <dialog id="confirmDialog" class="dialog dialog-sm" aria-labelledby="confirmTitle" aria-describedby="confirmBody">
   <div class="dialog-inner">
     <header class="dialog-head">
-      <h2 id="confirmTitle">Are you sure?</h2>
+      <h2 id="confirmTitle">Confirmer</h2>
     </header>
     <p id="confirmBody" class="hint"></p>
     <div class="dialog-actions dialog-actions-end">
-      <button type="button" class="btn" id="confirmCancel">Cancel</button>
-      <button type="button" class="btn btn-primary" id="confirmOk">Confirm</button>
+      <button type="button" class="btn" id="confirmCancel">Annuler</button>
+      <button type="button" class="btn btn-cta" id="confirmOk">Confirmer</button>
     </div>
   </div>
 </dialog>
+
+<input type="file" id="importFile" accept="application/json,.json" hidden>
 
 <div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
 

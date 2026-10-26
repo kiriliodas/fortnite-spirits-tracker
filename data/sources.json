@@ -7,77 +7,78 @@
       "id": "checklist",
       "name": "Sprite Checklist (spritechecklist.org)",
       "url": "https://spritechecklist.org/",
-      "usedFor": "Per-entry verification of all 162 rows (27 base + 26 Gold + 26 Cheat Master + 26 Loot Hacker + 26 Bounty Hunter + 26 Trick or Treat + 5 Quack), the per-Sprite image renders bundled in assets/sprites/, and the Quack mastery thresholds.",
+      "usedFor": "Vérification fiche par fiche des 162 entrées (27 base + 26 Gold + 26 Cheat Master + 26 Loot Hacker + 26 Bounty Hunter + 26 Trick or Treat + 5 Quack), source des visuels regroupés dans assets/sprites/ et des seuils de déblocage des Quack.",
       "accessNote": "Images downloaded and re-published locally for offline reliability. Sprites are Epic Games assets."
     },
     {
       "id": "vice",
       "name": "VICE — All Fortnite Chapter 7 Season 4 Sprites (complete list)",
       "url": "https://www.vice.com/en/article/all-fortnite-chapter-7-season-4-sprites-complete-list/",
-      "usedFor": "Cross-check of the total count (162) and of the per-collection counts (27/26/26/26/26/26/5)."
+      "usedFor": "Contrôle croisé du total (162) et du découpage par collection (27/26/26/26/26/26/5)."
     },
     {
       "id": "wiki",
       "name": "Fortnite Wiki (fortnite.weirdgloop.org) — Chapter 7: Season 4",
       "url": "https://fortnite.weirdgloop.org/w/Chapter_7:_Season_4",
-      "usedFor": "Cross-reference of release dates and update-history additions (v42.20, v42.30, v42.40) and of the Quack mastery levels."
+      "usedFor": "Contrôle croisé des dates de sortie et des ajouts par mise à jour (v42.20, v42.30, v42.40), et du track complet des récompenses de maîtrise."
     },
     {
       "id": "gamingroute",
       "name": "Gaming Route — Fortnite Sprites List (27 base + checklist)",
       "url": "https://gamingroute.com/fortnite-sprites-list-chapter-7-season-4/",
-      "usedFor": "Independent confirmation of the 162-entry total and the 'Quack only on five Sprites' rule."
+      "usedFor": "Confirmation indépendante du total de 162 entrées et de la règle « Quack sur cinq esprits seulement »."
     },
     {
       "id": "beebom-mastery",
       "name": "Beebom — What Does Mastering a Sprite Do in Fortnite?",
       "url": "https://beebom.com/what-does-mastering-a-sprite-do-in-fortnite/",
-      "usedFor": "Full Sprite Mastery reward track (28 Pixel Polli Outfit, 40/45/50/55/60 Quack Sprites, 70 Pixel Polli 'Mixtape Pixie' style)."
+      "usedFor": "Track complet des récompenses de maîtrise (Pixel Polli à 28, Quack à 40/45/50/55/60, style Mixtape Pixie à 70)."
     },
     {
       "id": "gamerant-quack",
       "name": "Game Rant — All Quack Sprites in Fortnite Override",
       "url": "https://gamerant.com/fortnite-ch7-s4-quack-sprites-mastery-reward-how-to-get-effect/",
-      "usedFor": "Cross-check of the five Quack thresholds (40 / 45 / 50 / 55 / 60)."
+      "usedFor": "Contrôle croisé des cinq seuils Quack (40 / 45 / 50 / 55 / 60)."
     },
     {
       "id": "beebom-willow",
       "name": "Beebom — How to Get the Obsession One Wish Willow Sprite",
       "url": "https://beebom.com/how-to-get-obsession-one-wish-willow-sprite-in-fortnite/",
-      "usedFor": "One Wish Willow = the Obsession (Fortnitemares 2026) collab Sprite, added v42.40 on Oct 15 2026."
+      "usedFor": "One Wish Willow = esprit de la collab Obsession (Fortnitemares 2026), ajouté en v42.40 le 15 octobre 2026."
     },
     {
       "id": "gamerant-blinky",
       "name": "Game Rant — How to Get the Blinky Sprite (PAC-MAN Ghosts)",
       "url": "https://gamerant.com/fortnite-blinky-sprite-location-how-to-get-effect-pac-man-ghost-locations/",
-      "usedFor": "Blinky = PAC-MAN collab Sprite based on Blinky from PAC-MAN: Snack Breaks."
+      "usedFor": "Blinky = esprit de la collab PAC-MAN, inspiré de Blinky dans PAC-MAN: Snack Breaks."
     },
     {
       "id": "polygon",
       "name": "Polygon — All sprites in Fortnite Chapter 7 Season 4",
       "url": "https://www.polygon.com/fortnite-chapter-7-season-4-sprite-list-abilities-c7s4/",
-      "usedFor": "Independent confirmation of base Sprite abilities and of the five special finishes."
+      "usedFor": "Confirmation indépendante des capacités des esprits de base et des cinq finitions spéciales."
     },
     {
       "id": "fnsprites",
       "name": "FN Sprite Tracker (fnsprites.app)",
       "url": "https://fnsprites.app/sprites",
-      "usedFor": "Independent confirmation that exactly 27 Sprites are obtainable in Season 4, plus per-rarity Dust costs. Not used for names: it still uses pre-launch labels (Jazz Jackrabbit, Bush Ranger, 8-Bit Blaster)."
+      "usedFor": "Confirmation indépendante des 27 esprits réellement obtenables en saison 4 et des coûts en Sprite Dust. Non utilisé pour les noms : le site garde les libellés d'avant-sortie (Jazz Jackrabbit, Bush Ranger, 8-Bit Blaster)."
     },
     {
       "id": "wiki-items",
       "name": "Fortnite Wiki item pages (e.g. Jackrabbit Sprite)",
       "url": "https://fortnite.weirdgloop.org/w/Jackrabbit_Sprite",
-      "usedFor": "Confirming the authoritative in-game item names, rarities and internal IDs for individual Sprites."
+      "usedFor": "Confirmation des noms d'objets officiels, raretés et identifiants internes de chaque esprit."
     }
   ],
   "uncertainties": [
-    "Epic has locked the roster at 162 entries for Override (season ends Oct 31 2026), but a mid-season content change could still add or remove rows. The tracker carries a catalogVersion so imported collections stay matched to the roster they were recorded against.",
-    "The mastery thresholds for the five Quack Sprites (40/45/50/55/60) and the 70-mastery Pixel Polli style come from multiple guides that agree with each other; Epic has not published the numbers in patch notes. Treat them as report-consistent, not officially documented.",
-    "There is no Jonesy 'Spirit' sub-family in the game. Jonesy has exactly seven collection rows: Base, Gold, Cheat Master, Loot Hacker, Bounty Hunter, Trick or Treat and Quack (the Quack form is a 40-mastery reward). Names such as 'Golden Jonesy Spirit', 'King of Cheats Jonesy Spirit' or 'Pirate of Plunder Jonesy Spirit' do not appear in any verified Season 4 source and were therefore NOT added to the catalog.",
-    "The game calls these collectibles 'Sprites'; this tracker accepts 'spirit'/'spirits' in search as a synonym but uses the official names in the catalog.",
-    "Exact drop rates per Sprite are not published by Epic, so none are shown.",
-    "Some trackers still list pre-launch or cancelled rows (Jazz Jackrabbit, Bushranger, 8-Bit Blaster, The Adventurer, Victory Crown, Bullet, Cube, Head Shot, Meowscles, Squibbly) and previous-season Sprites (Dream, Zero Point, Grim Reaper, Ironmouse, Pollo, Duck, Ghost, Fire, Water, Earth, Fishy). Only the 27 Sprites actually obtainable in Season 4 are in this catalog; the older names are wired into search as aliases.",
-    "Chapter 7 Season 3 Sprites stay in a player's collection but are no longer equippable and do not feed the Season 4 mastery track, so they are out of scope for this tracker."
-  ]
+    "Epic a figé le roster à 162 entrées pour Override (fin de saison le 31 octobre 2026), mais une modification de dernière minute reste possible. Le tracker embarque donc une version de catalogue (C7S4-2026-10-26) pour rapprocher les sauvegardes importées du roster sur lequel elles ont été faites.",
+    "Les seuils des cinq Quack (40/45/50/55/60) et le style Pixel Polli à 70 maîtrises proviennent de plusieurs guides concordants ; Epic ne les a pas publiés dans les notes de patch. À traiter comme cohérents entre sources, pas comme officiellement documentés.",
+    "Le palier 16 (Cheat Code Locators) est indiqué en x3 par IGN et en x2 par le Fortnite Wiki, Game Rant, Beebom et allthings.how. C'est x2 qui est retenu ici ; le doute est signalé plutôt que masqué.",
+    "Il n'existe pas de sous-famille « Jonesy Spirit » dans le jeu. Jonesy compte exactement sept entrées : Base, Gold, Cheat Master, Loot Hacker, Bounty Hunter, Trick or Treat et Quack (débloqué à 40 maîtrises). Les noms « Golden Jonesy Spirit », « King of Cheats Jonesy Spirit » ou « Pirate of Plunder Jonesy Spirit » n'apparaissent dans aucune source vérifiée et n'ont donc pas été ajoutés.",
+    "Plusieurs trackers conservent des noms d'avant-sortie (Jazz Jackrabbit, Bushranger, 8-Bit Blaster, The Adventurer, Victory Crown) ou des esprits de la saison 3 (Dream, Zero Point, Grim Reaper, Ironmouse, Pollo, Duck, Ghost, Fire, Water, Earth, Fishy) et des placeholders jamais sortis (Bullet, Cube, Head Shot, Meowscles, Squibbly). Seuls les 27 esprits réellement obtenables en saison 4 figurent ici ; les anciens noms sont branchés en alias de recherche.",
+    "Les esprits de la saison 3 restent dans la collection d'un joueur mais ne sont plus équipables et n'alimentent pas le track de maîtrise de la saison 4 : ils sont hors périmètre.",
+    "Les taux d'apparition exacts ne sont pas publiés par Epic, donc aucun n'est affiché."
+  ],
+  "accessNote": "Visuels téléchargés et republiés localement pour la fiabilité hors ligne. Les esprits sont des assets Epic Games."
 }

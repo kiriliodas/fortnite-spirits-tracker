@@ -2,7 +2,7 @@
   "name": "fortnite-spirits-tracker",
   "version": "1.0.0",
   "private": true,
-  "description": "Static collection tracker for all 162 Fortnite Chapter 7 Season 4 Sprites",
+  "description": "Tracker de collection statique des 162 esprits de Fortnite Chapitre 7 Saison 4",
   "scripts": {
     "build": "python3 tools/build_catalog.py",
     "test": "node tools/test.js",
