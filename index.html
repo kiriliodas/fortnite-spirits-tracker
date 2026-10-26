@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Fortnite Spirits — Chapter 7 Season 4 Collection Tracker</title>
+<meta name="description" content="Personal collection tracker for all 162 Fortnite Chapter 7 Season 4 (Override) Sprites: ownership, mastery, and progress toward the 70-mastery reward.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0d12'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%2322d3ee'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#collection">Skip to collection</a>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M12 2.8 14.4 8l5.7.6-4.2 3.8 1.2 5.6L12 15.1 6.9 18l1.2-5.6L3.9 8.6 9.6 8z"/>
+        <circle cx="12" cy="21" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+    </span>
+    <div class="brand-text">
+      <h1>Fortnite Spirits</h1>
+      <p>Chapter 7 · Season 4 — <span class="season">Override</span><span class="strapline-extra"> · <span id="catalogTotalLabel">162</span> sprites &amp; variants</span></p>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <button type="button" class="btn btn-ghost" id="settingsBtn" aria-haspopup="dialog" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg>
+      <span class="lbl-long">Settings</span>
+    </button>
+    <button type="button" class="btn" id="importBtn">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11"/><path d="m7.5 10 4.5 4.5 4.5-4.5"/><path d="M4 16.5v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      <span class="lbl-long">Import Collection</span><span class="lbl-short">Import</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="exportBtn">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5v-11"/><path d="m7.5 14 4.5-4.5 4.5 4.5"/><path d="M4 16.5v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      <span class="lbl-long">Export Collection</span><span class="lbl-short">Export</span>
+    </button>
+    <input type="file" id="importFile" accept="application/json,.json" hidden>
+  </div>
+</header>
+
+<main>
+  <!-- ---------- Mastery progress ---------- -->
+  <section class="panel progress" aria-labelledby="progressHeading">
+    <h2 id="progressHeading" class="sr-only">Sprite mastery progress</h2>
+
+    <div class="progress-top">
+      <div class="progress-headline">
+        <p class="progress-count">
+          <strong id="masteredTotal">15</strong><span class="slash">/</span><span id="masteryTarget">70</span>
+          <span class="unit">mastered</span>
+        </p>
+        <p class="progress-remaining" id="remainingLabel">55 more to go</p>
+      </div>
+
+      <div class="badge" id="rewardStatus" data-state="locked">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+        <span id="rewardStatusText">Reward locked</span>
+      </div>
+    </div>
+
+    <div class="bar" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="70" aria-valuenow="15" aria-labelledby="remainingLabel">
+      <div class="bar-fill" id="barFill" style="width:21.43%"></div>
+      <span class="bar-tick" style="left:40%" title="Quack Jonesy at 40 mastered"></span>
+      <span class="bar-tick" style="left:60%" title="Quack Klombo at 60 mastered"></span>
+    </div>
+
+    <div class="progress-foot">
+      <p class="milestones" id="milestoneLabel"></p>
+      <p class="starting">
+        <span id="startingText">Counter starts at 15 pre-tracked masteries</span>
+        <button type="button" class="link-btn" id="editStartingBtn">change</button>
+      </p>
+    </div>
+
+    <ul class="stats">
+      <li><span class="stat-value" id="statOwned">0</span><span class="stat-label">Owned</span></li>
+      <li><span class="stat-value" id="statMastered">0</span><span class="stat-label">Mastered here</span></li>
+      <li><span class="stat-value" id="statMissing">162</span><span class="stat-label">Missing</span></li>
+      <li><span class="stat-value" id="statCompletion">0%</span><span class="stat-label">Collection</span></li>
+    </ul>
+  </section>
+
+  <!-- ---------- Controls ---------- -->
+  <section class="controls" aria-label="Search, filter and sort">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+      <input type="search" id="search" placeholder="Search sprites, families, finishes…" aria-label="Search sprites by name, family, variant or alias" autocomplete="off" spellcheck="false">
+      <button type="button" class="clear-search" id="clearSearch" aria-label="Clear search" hidden>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="filter-row">
+      <div class="filters" role="group" aria-label="Filter by collection status">
+        <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="owned" aria-pressed="false">Owned</button>
+        <button type="button" class="chip" data-filter="missing" aria-pressed="false">Missing</button>
+        <button type="button" class="chip" data-filter="mastered" aria-pressed="false">Mastered</button>
+        <button type="button" class="chip" data-filter="unmastered" aria-pressed="false">Not mastered</button>
+        <button type="button" class="chip" data-filter="owned-unmastered" aria-pressed="false">Owned, not mastered</button>
+      </div>
+
+      <div class="sort-wrap">
+        <label for="sort">Sort</label>
+        <select id="sort">
+          <option value="family">By family</option>
+          <option value="az">A → Z</option>
+          <option value="status">By status</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="result-count" id="resultCount" role="status" aria-live="polite">162 sprites</p>
+  </section>
+
+  <!-- ---------- Collection ---------- -->
+  <section id="collection" aria-label="Sprite collection">
+    <div id="grid" class="collection"></div>
+    <div class="empty" id="emptyState" hidden>
+      <p class="empty-title">No sprites match this view.</p>
+      <p class="empty-body">Try a different search term, clear the filter, or switch to “All”.</p>
+      <button type="button" class="btn" id="resetViewBtn">Reset search &amp; filters</button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>
+    <span id="footerCatalog">Catalog C7S4-2026-10-26</span> ·
+    <span id="footerVerified">verified 26 Oct 2026 (patch v42.40)</span> ·
+    <a href="https://spritechecklist.org/" target="_blank" rel="noopener noreferrer">spritechecklist.org</a>,
+    <a href="https://www.vice.com/en/article/all-fortnite-chapter-7-season-4-sprites-complete-list/" target="_blank" rel="noopener noreferrer">VICE</a>,
+    <a href="https://fortnite.weirdgloop.org/w/Chapter_7:_Season_4" target="_blank" rel="noopener noreferrer">Fortnite Wiki</a>
+  </p>
+  <p class="footer-note">Saved in this browser only — no account, no server. Sprite art © Epic Games; images bundled locally for offline use.</p>
+</footer>
+
+<!-- ---------- Settings dialog ---------- -->
+<dialog id="settingsDialog" class="dialog" aria-labelledby="settingsTitle">
+  <form method="dialog" class="dialog-inner">
+    <header class="dialog-head">
+      <h2 id="settingsTitle">Settings &amp; catalog info</h2>
+      <button type="submit" class="icon-btn" aria-label="Close settings" value="close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+
+    <section class="dialog-section">
+      <h3>Starting mastery count</h3>
+      <p class="hint">Sprites you had already mastered before you started using this tracker. They count toward the 70-mastery reward but aren't tied to specific entries. Default is <strong>15</strong>.</p>
+      <div class="number-row">
+        <input type="number" id="startingInput" min="0" max="162" step="1" value="15" inputmode="numeric" aria-label="Starting mastery count">
+        <span class="hint">of 162 catalog entries · applies instantly</span>
+      </div>
+    </section>
+
+    <section class="dialog-section">
+      <h3>Collection data</h3>
+      <p class="hint" id="dataSummary">—</p>
+      <div class="dialog-actions">
+        <button type="button" class="btn" id="dialogExportBtn">Export Collection</button>
+        <button type="button" class="btn" id="dialogImportBtn">Import Collection</button>
+        <button type="button" class="btn btn-danger" id="resetBtn">Reset collection</button>
+      </div>
+      <p class="hint" id="unknownEntries" hidden></p>
+    </section>
+
+    <section class="dialog-section">
+      <h3>Catalog</h3>
+      <p class="hint" id="catalogSummary">—</p>
+      <ul class="source-list" id="sourceList"></ul>
+      <p class="hint disclosure" id="disclosureText"></p>
+    </section>
+  </form>
+</dialog>
+
+<!-- ---------- Import report dialog ---------- -->
+<dialog id="reportDialog" class="dialog" aria-labelledby="reportTitle">
+  <form method="dialog" class="dialog-inner">
+    <header class="dialog-head">
+      <h2 id="reportTitle">Import result</h2>
+      <button type="submit" class="icon-btn" aria-label="Close" value="close">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+    <div id="reportBody" class="report-body"></div>
+    <div class="dialog-actions">
+      <button type="submit" class="btn btn-primary" value="close">Done</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- ---------- Confirm dialog ---------- -->
+<dialog id="confirmDialog" class="dialog dialog-sm" aria-labelledby="confirmTitle" aria-describedby="confirmBody">
+  <div class="dialog-inner">
+    <header class="dialog-head">
+      <h2 id="confirmTitle">Are you sure?</h2>
+    </header>
+    <p id="confirmBody" class="hint"></p>
+    <div class="dialog-actions dialog-actions-end">
+      <button type="button" class="btn" id="confirmCancel">Cancel</button>
+      <button type="button" class="btn btn-primary" id="confirmOk">Confirm</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
+
+<script src="data/catalog.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
