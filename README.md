@@ -1,9 +1,13 @@
-# Collection des Esprits — Fortnite Chapitre 7, Saison 4
+# Esprits Fortnite — Chapitre 7, Saison 4
 
 Tracker de collection **100 % statique** pour tous les **esprits (Sprites) de Fortnite Chapitre 7
 Saison 4 « Override »** : 162 entrées, 27 esprits et 7 familles de finitions, avec suivi
 **possédé / maîtrisé** fiche par fiche, recherche, filtres, progression vers le palier
 **70 maîtrises** et export / import JSON pour les sauvegardes.
+
+**Direction visuelle** : galerie minimaliste premium, inspirée des principes des Human Interface
+Guidelines d'Apple — typographie système native, neutres calmes, un unique accent bleu, images au
+centre de la composition, micro-animations de 150 à 250 ms. Voir la section 8.
 
 Ouvrir `index.html`. Aucune étape de build, aucun serveur, aucun compte, aucune requête réseau.
 
@@ -205,7 +209,6 @@ data/catalog.js         GÉNÉRÉ, chargé par la page (fonctionne en file:// �
 data/spirits.json       GÉNÉRÉ, catalogue lisible en JSON
 data/sources.json       sources + incertitudes documentées (alimente le panneau Réglages)
 assets/sprites/*.webp   162 rendus embarqués (~2,0 Mo au total, ~10 Ko chacun)
-assets/fonts/*.woff2    4 fichiers Anton + Barlow Condensed (auto-hébergés, ~87 Ko)
 tools/build_catalog.py  régénère data/spirits.json + data/catalog.js
 tools/test.js           suite de tests jsdom (152 assertions)
 ```
@@ -260,8 +263,9 @@ ne change. Aucune dépendance `node_modules` à l'exécution.
 * Si une image échoue, la fiche affiche un remplacement étiqueté (`.img-fallback` : « Image
   indisponible » + les initiales de l'esprit) au lieu d'une icône cassée — l'entrée n'est jamais
   masquée.
-* Les polices **Anton** et **Barlow Condensed** sont auto-hébergées (`assets/fonts/`, licence SIL
-  Open Font) afin qu'aucune requête vers Google Fonts ne soit nécessaire.
+* **Aucune police distante** : la pile typographique est entièrement système
+  (`-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Roboto`, `Helvetica Neue`). Zéro requête
+  réseau, rendu natif sur macOS, iOS, Windows et Android, et aucun fichier de police à héberger.
 
 ## 7. Accessibilité et performance
 
@@ -272,4 +276,60 @@ ne change. Aucune dépendance `node_modules` à l'exécution.
 * Clavier : `Tab` sur tous les contrôles, `/` pour la recherche, `Échap` pour fermer/vider.
 * Aucun framework, aucune requête externe, aucune police distante, aucun analytics ; 162 images en
   `loading="lazy"`, un CSS, un JS.
+* Contraste vérifié : texte principal 16,8:1, texte secondaire 5,1:1, texte tertiaire 4,6:1, accent
+  4,7:1 sur blanc (WCAG AA).
 * `prefers-reduced-motion` respecté ; lisible jusqu'à 320 px sans débordement horizontal.
+
+---
+
+## 8. Direction artistique
+
+La refonte a remplacé l'ancienne direction « interface de jeu » (bleu électrique, capitales
+condensées, halos) par une **galerie minimaliste premium**.
+
+### Principes retenus
+
+| Principe Apple | Traduction dans le projet |
+|---|---|
+| La typographie porte la hiérarchie | Une seule famille système, 4 niveaux de gris, un titre de page à 34 px, des labels à 12 px ; aucune capitale forcée hors micro-labels |
+| L'espace vide attire l'attention | Le panneau de maîtrise et le titre respirent ; la densité reprend dans la grille, cœur de l'outil |
+| Fonds neutres, contrastes subtils | `#f5f5f7` en fond, `#fff` en surface, filets à 8 % de noir, aucune ombre décorative |
+| Un accent, avec parcimonie | Un seul bleu `#0066d6` : actions, état actif, progression, maîtrise |
+| L'image est le contenu | Les rendus d'esprits sont sur fond blanc, en `object-fit: contain`, sans effet |
+| Bordures fines, rayons maîtrisés | Rayons 9/12/18 px, filets de 1 px, capsules de 980 px pour les commandes |
+| Boutons simples | Trois niveaux : primaire plein, discret bordé, texte seul |
+| Animations légères | 150–250 ms, `cubic-bezier`, opacité et translation uniquement |
+
+### Composants
+
+* **En-tête** collant translucide (`backdrop-filter` 20 px), nom du projet, trois actions.
+* **Panneau de maîtrise** : chiffre `x / 70` en 46 px, pourcentage discret, barre de 8 px avec
+  repères des paliers clés, prochaine récompense, puis rail des **35 paliers** (sur desktop : piste
+  défilante, tuile active cerclée de bleu, tuiles obtenues cochées, futures estompées).
+* **Statistiques** : quatre chiffres séparés par des filets, présentés comme une seule composition.
+* **Barre d'outils** collante : recherche, contrôle segmenté des six filtres avec compteurs, trois
+  sélecteurs, nombre de résultats.
+* **Grille** : 6–7 colonnes sur desktop, 2 sur téléphone, images carrées, nom sur deux lignes,
+  point de variante + famille, deux bascules *Possédé* / *Maîtrisé*.
+* **États** : possédé = coche grise + bascule noire ; maîtrisé = coche bleue + bascule bleue ; à
+  obtenir = aucun voile, image pleinement lisible.
+
+### Liquid Glass : écarté, et pourquoi
+
+Le projet [dpawlikowski/liquid-glass](https://github.com/dpawlikowski/liquid-glass) a été inspecté
+(core CSS + API `injectLiquidGlassFilter`). Il a été **volontairement non intégré** :
+
+1. Sa réfraction repose sur un filtre SVG `feTurbulence` + `feDisplacementMap` **animé**, avec un
+   coût GPU réel documenté par l'auteur, plus une couche `mix-blend-mode: screen` et une copie
+   déplacée du fond de scène.
+2. Le rendu dépend d'une variable `--lg-scene-background` à synchroniser avec le fond de la page ;
+   sur une trame neutre et unie comme celle-ci, le gain visuel est proche de zéro.
+3. Le projet est distribué en package (sources TypeScript, build) : l'intégrer proprement
+   demanderait une dépendance ou une copie vendorisée pour un simple ornement.
+4. La direction demandée exclut explicitement les surfaces vitrées multiples ; l'effet aurait été
+   un ajout fragile pour un bénéfice marginal.
+
+Le besoin réel — une barre d'outils qui reste lisible au-dessus du contenu — est couvert par du CSS
+sobre : fond à 95 % d'opacité, `backdrop-filter: blur(24px) saturate(180%)`, filet de 1 px. Même
+traitement pour l'en-tête. Aucun coût GPU notable, aucun JS, et repli opaque si `backdrop-filter`
+n'est pas disponible.

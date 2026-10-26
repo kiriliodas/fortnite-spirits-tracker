@@ -159,12 +159,13 @@ const tileState = (window, level) => {
   eq("possédés après 1", text(doc.getElementById("statOwned")), "1/162");
   eq("complétion après 1", text(doc.getElementById("statCompletion")), "1%");
   ok("carte marquée .is-owned", doc.querySelector('[data-card-id="jonesy-base"]').classList.contains("is-owned"));
-  ok("étiquette d'état = Possédé", text(doc.querySelector('[data-card-id="jonesy-base"] .state-tag')) === "Possédé");
+  eq("état de la fiche = owned", doc.querySelector('[data-card-id="jonesy-base"]').dataset.status, "owned");
+  ok("pastille d'état présente", !!doc.querySelector('[data-card-id="jonesy-base"] .badge'));
 
   toggle(w, "jonesy-base", "mastered", true);
   eq("compteur maîtrisés 0 → 1", masteredTotal(w), 1);
   eq("pourcentage arrondi", text(doc.getElementById("progressPercent")), "1");
-  ok("emblème de maîtrise", !!doc.querySelector('[data-card-id="jonesy-base"] .crown'));
+  eq("état de la fiche = mastered", doc.querySelector('[data-card-id="jonesy-base"]').dataset.status, "mastered");
   ok("carte marquée .is-mastered", doc.querySelector('[data-card-id="jonesy-base"]').classList.contains("is-mastered"));
   eq("palier 1 obtenu", tileState(w, 1), "claimed");
   eq("palier 2 devient le prochain", tileState(w, 2), "next");

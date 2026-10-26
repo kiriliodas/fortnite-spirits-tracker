@@ -71,6 +71,9 @@
   function nf(n) { return Number(n).toLocaleString("fr-FR"); }
 
   /* ------------------------------------------------------------ reward icons */
+  /* coche commune aux fiches et aux paliers */
+  var CHECK = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.4 4.6 4.6L19 7.2"/></svg>';
+
   var ICONS = {
     xp: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3.4l2.7 5.7 6.2.8-4.6 4.3 1.2 6.1L12 17.4 6.5 20.3l1.2-6.1L3.1 9.9l6.2-.8z"/></svg>',
     dust: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3.6l1.9 5.1 5.1 1.9-5.1 1.9L12 17.6l-1.9-5.1L5 10.6l5.1-1.9z"/><path d="M18.4 16.2l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',
@@ -420,34 +423,35 @@
     var st = statusOf(s.id);
     var owned = st !== "missing";
     var mastered = st === "mastered";
-    var classes = "card rarity-" + String(s.rarity || "").toLowerCase() +
-      (mastered ? " is-mastered is-owned" : owned ? " is-owned" : "");
-    var showSeries = s.series && s.series !== "Fortnite";
-    var stateLabel = mastered ? "Maîtrisé" : owned ? "Possédé" : "Manquant";
+    var classes = "card" + (mastered ? " is-mastered is-owned" : owned ? " is-owned" : "");
+    var meta = esc(s.family) + " \u00b7 " + esc(s.rarity) +
+      (s.series && s.series !== "Fortnite" ? " \u00b7 " + esc(s.series) : "");
+    var badge = '<span class="badge" aria-hidden="true">' + CHECK + "</span>";
 
     return (
-      '<article class="' + classes + '" data-card-id="' + esc(s.id) + '" data-status="' + st + '">' +
+      '<article class="' + classes + '" data-card-id="' + esc(s.id) + '" data-status="' + st +
+        '" data-variant="' + esc(s.variantId) + '">' +
         '<div class="thumb">' +
-          '<img src="' + esc(s.image) + '" alt="' + esc(s.name) + '" loading="lazy" decoding="async" width="300" height="300" data-initials="' + esc(s._initials) + '">' +
-          '<span class="vchip" data-variant="' + esc(s.variantId) + '">' + esc(s.variant) + "</span>" +
-          (showSeries ? '<span class="series-tag" title="Crossover ' + esc(s.series) + '">' + esc(s.series) + "</span>" : "") +
-          '<span class="state-tag" data-state="' + st + '">' + stateLabel + "</span>" +
-          (mastered ? '<span class="crown" title="Maîtrisé (niveau 5 extrait)" aria-label="Maîtrisé"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 8.5l3.6 2.7L12 5l5.4 6.2L21 8.5 19.2 18H4.8z"/></svg></span>' : "") +
-          '<span class="rarity-bar" aria-hidden="true"></span>' +
+          '<img src="' + esc(s.image) + '" alt="' + esc(s.name) + '" loading="lazy" decoding="async" ' +
+            'width="300" height="300" data-initials="' + esc(s._initials) + '">' +
+          badge +
         "</div>" +
-        '<div class="card-body">' +
-          '<h3 class="card-title" title="' + esc(s.name) + '">' + esc(s.name) + "</h3>" +
-          '<p class="card-meta">' + esc(s.family) + " · " + esc(s.rarity) + "</p>" +
-          '<div class="card-controls">' +
-            '<label class="toggle toggle-owned' + (owned ? " is-on" : "") + '" title="J\'ai cet esprit dans ma collection">' +
-              '<input type="checkbox" data-id="' + esc(s.id) + '" data-kind="owned" aria-label="Marquer ' + esc(s.name) + ' comme possédé"' + (owned ? " checked" : "") + ">" +
-              "<span>Possédé</span>" +
-            "</label>" +
-            '<label class="toggle toggle-mastered' + (mastered ? " is-on" : "") + '" title="Niveau 5 atteint puis extrait">' +
-              '<input type="checkbox" data-id="' + esc(s.id) + '" data-kind="mastered" aria-label="Marquer ' + esc(s.name) + ' comme maîtrisé (niveau 5, extrait)"' + (mastered ? " checked" : "") + ">" +
-              "<span>Maîtrisé</span>" +
-            "</label>" +
-          "</div>" +
+        '<h3 class="card-title" title="' + esc(s.name) + '">' + esc(s.name) + "</h3>" +
+        '<p class="card-meta">' +
+          '<span class="vdot" data-variant="' + esc(s.variantId) + '" aria-hidden="true"></span>' +
+          '<span class="meta-text">' + meta + "</span>" +
+        "</p>" +
+        '<div class="card-controls">' +
+          '<label class="toggle toggle-owned' + (owned ? " is-on" : "") + '" title="J\'ai cet esprit dans ma collection">' +
+            '<input type="checkbox" data-id="' + esc(s.id) + '" data-kind="owned" aria-label="Marquer ' +
+              esc(s.name) + ' comme possédé"' + (owned ? " checked" : "") + ">" +
+            "<span>Possédé</span>" +
+          "</label>" +
+          '<label class="toggle toggle-mastered' + (mastered ? " is-on" : "") + '" title="Niveau 5 atteint puis extrait">' +
+            '<input type="checkbox" data-id="' + esc(s.id) + '" data-kind="mastered" aria-label="Marquer ' +
+              esc(s.name) + ' comme maîtrisé (niveau 5, extrait)"' + (mastered ? " checked" : "") + ">" +
+            "<span>Maîtrisé</span>" +
+          "</label>" +
         "</div>" +
       "</article>"
     );
@@ -572,13 +576,15 @@
         : (ICONS[r.type] || ICONS.sprite);
       var stateText = st === "claimed" ? "obtenu" : st === "next" ? "prochain palier" : "verrouillé";
       return (
-        '<div class="rw' + (r.featured ? " is-featured" : "") + '" data-state="' + st + '" data-type="' + esc(r.type) + '" data-reward-id="' + esc(r.id) + '"' +
-          ' role="listitem" tabindex="0" aria-label="' + esc(r.reward) + ' — ' + r.level + ' esprits maîtrisés, ' + stateText + '">' +
-          (st === "next" ? '<span class="rw-flag">Suivant</span>' : "") +
-          '<span class="rw-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span>' +
-          '<span class="rw-icon" aria-hidden="true">' + icon +
-            '<span class="rw-threshold">' + r.level + "</span>" +
+        '<div class="rw' + (r.featured ? " is-featured" : "") + '" data-state="' + st +
+          '" data-type="' + esc(r.type) + '" data-reward-id="' + esc(r.id) + '"' +
+          ' role="listitem" tabindex="0" aria-label="' + esc(r.reward) + ' \u2014 ' + r.level +
+          ' esprits maîtrisés, ' + stateText + '">' +
+          '<span class="rw-icon">' + icon +
+            (st === "claimed" ? '<span class="rw-check">' + CHECK + "</span>" : "") +
+            (st === "next" ? '<span class="rw-flag" aria-hidden="true">Suivant</span>' : "") +
           "</span>" +
+          '<span class="rw-threshold">' + r.level + "</span>" +
           '<span class="rw-name">' + esc(r.short || r.reward) + "</span>" +
         "</div>"
       );
@@ -721,27 +727,6 @@
       cb.closest(".toggle").classList.toggle("is-on", isOwnedBox ? owned : mastered);
     });
 
-    var tag = node.querySelector(".state-tag");
-    if (tag) {
-      tag.dataset.state = st;
-      tag.textContent = STATUS_LABEL[st];
-    }
-
-    var crown = node.querySelector(".crown");
-    if (mastered && !crown) {
-      var thumb = node.querySelector(".thumb");
-      if (thumb) {
-        var span = document.createElement("span");
-        span.className = "crown";
-        span.setAttribute("title", "Maîtrisé (niveau 5 extrait)");
-        span.setAttribute("aria-label", "Maîtrisé");
-        span.innerHTML = '<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M3 8.5l3.6 2.7L12 5l5.4 6.2L21 8.5 19.2 18H4.8z"/></svg>';
-        var bar = thumb.querySelector(".rarity-bar");
-        if (bar) thumb.insertBefore(span, bar); else thumb.appendChild(span);
-      }
-    } else if (!mastered && crown) {
-      crown.remove();
-    }
   }
 
   function flashCard(id, kind) {
@@ -831,8 +816,8 @@
     if (!wrap || wrap.querySelector(".img-fallback")) return;
     var fb = document.createElement("div");
     fb.className = "img-fallback";
-    fb.style.cssText = "display:grid;place-items:center;gap:4px;padding:10px;text-align:center;color:#7e97b8;font-size:10px";
-    fb.innerHTML = "<span style=\"font-family:var(--font-display);font-size:20px;color:#9fe3ff\">" +
+    fb.style.cssText = "display:grid;place-items:center;gap:4px;padding:10px;text-align:center;color:#86868b;font-size:10px";
+    fb.innerHTML = "<span style=\"font-size:17px;font-weight:600;letter-spacing:-0.02em;color:#a1a1a6\">" +
       esc(img.dataset.initials || "?") + "</span>Image indisponible";
     wrap.appendChild(fb);
   }, true);
@@ -1054,10 +1039,11 @@
       var html =
         '<p class="ok">Collection importée.</p>' +
         '<ul class="source-list">' +
-        "<li><strong>" + info.owned + "</strong> esprits possédés</li>" +
-        "<li><strong>" + info.tracked + "</strong> cochés maîtrisés ici + <strong>" + info.starting +
-          "</strong> déjà maîtrisés hors tracker = <strong>" + info.mastered + "</strong> / " + MASTERY_TARGET + " vers la récompense</li>" +
-        "<li><strong>" + info.matched + "</strong> fiches associées au catalogue actuel</li>" +
+        "<li><strong>" + info.owned + "</strong> esprit" + (info.owned === 1 ? "" : "s") + " poss\u00e9d\u00e9" + (info.owned === 1 ? "" : "s") + "</li>" +
+        "<li><strong>" + info.tracked + "</strong> cochl\u00e9" + (info.tracked === 1 ? "" : "s") + " ma\u00eetris\u00e9" + (info.tracked === 1 ? "" : "s") +
+          " ici + <strong>" + info.starting + "</strong> d\u00e9j\u00e0 ma\u00eetris\u00e9" + (info.starting === 1 ? "" : "s") +
+          " hors tracker = <strong>" + info.mastered + "</strong> / " + MASTERY_TARGET + " vers la r\u00e9compense</li>" +
+        "<li><strong>" + info.matched + "</strong> fiche" + (info.matched === 1 ? "" : "s") + " associ\u00e9e" + (info.matched === 1 ? "" : "s") + " au catalogue actuel</li>" +
         "</ul>";
       if (info.warnings && info.warnings.length) {
         html += '<p class="warn">À noter</p><ul class="source-list">' +
@@ -1193,7 +1179,7 @@
     document.addEventListener(evt, function (e) {
       if (e.dataTransfer && Array.from(e.dataTransfer.types || []).indexOf("Files") !== -1) {
         e.preventDefault();
-        document.body.style.outline = "2px dashed rgba(46,230,246,.6)";
+        document.body.style.outline = "2px dashed rgba(0,113,227,.55)";
         document.body.style.outlineOffset = "-7px";
       }
     });
